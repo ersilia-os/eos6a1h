@@ -1,6 +1,6 @@
 Identifier: eos6a1h
 Slug: cocograph-small
-Status: In progress
+Status: Ready
 Title: CoCoGraph Small-Fragment Inpainting
 Description: Attaches a randomly selected small fragment (2–5 heavy atoms, drawn
   from a library of frequent substructures) to an input molecule and refines it 
@@ -38,6 +38,16 @@ Source Code: https://doi.org/10.5281/zenodo.18940151
 License: MIT
 Contributor: arnaucoma24
 Incorporation Date: '2026-08-28'
+Last Packaging Date: '2026-08-30'
+Release: v1.0.0
 S3: https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos6a1h.zip
+DockerHub: https://hub.docker.com/r/ersiliaos/eos6a1h
+Docker Architecture: AMD64
 Model Size: 52.0
 Environment Size: 1510.0
+Image Size: 1602.32
+Computational Performance 1: 232.24
+Computational Performance 2: 1639.19
+Computational Performance 3: -1.0
+Computational Performance 4: -1.0
+Computational Performance 5: -1.0
