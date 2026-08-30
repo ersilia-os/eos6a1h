@@ -2,42 +2,36 @@ Identifier: eos6a1h
 Slug: cocograph-small
 Status: In progress
 Title: CoCoGraph Small-Fragment Inpainting
-Description: Given a molecule, grows it by attaching a small chemical fragment 
-  (2–5 heavy atoms) at a randomly selected position, using a constrained graph 
-  diffusion process that keeps the original structure fixed and guarantees the 
-  resulting molecule is 100% chemically valid. Useful for exploring close 
-  structural analogues and minor scaffold decorations while preserving a 
-  molecules core, such as for lead optimization in drug discovery.
+Description: Attaches a randomly selected small fragment (2–5 heavy atoms, drawn
+  from a library of frequent substructures) to an input molecule and refines it
+  with CoCoGraph's constrained graph diffusion, which swaps bond pairs so every
+  intermediate stays valence-valid, guaranteeing 100% chemical validity. The
+  diffusion and time models were trained on 2.25 million PubChem, ChEMBL, ZINC
+  and NIST molecules; in a Turing-like test, 121 organic chemists distinguished
+  its outputs from real molecules with only 62% accuracy.
 Deployment:
   - Local
-  - Online
-Source: Local, Online
-Source Type: Internal, Replicated, External
-Task: Annotation, Representation, Sampling
-Subtask: Property calculation or prediction, Activity prediction, Featurization,
-  Projection, Similarity search, Generation
+Source: Local
+Source Type: External
+Task: Sampling
+Subtask: Generation
 Input:
   - Compound
 Input Dimension: 1
 Output:
-  - Value
-  - Score
   - Compound
-  - Text
-Output Dimension: 1
-Output Consistency: Fixed, Variable
-Interpretation: The output of this template model should be interpreted like 
-  this.
+Output Dimension: 100
+Output Consistency: Variable
+Interpretation: 100 generated molecules produced by attaching a new small fragment
+  to the input scaffold.
 Tag:
   - Compound generation
   - Chemical graph model
 Biomedical Area:
-  - Biomedical Area 1
-  - Biomedical Area 2
+  - Any
 Target Organism:
-  - Target Organism 1
-  - Target Organism 2
-Publication Type: Peer reviewed, Preprint, Other
+  - Any
+Publication Type: Peer reviewed
 Publication Year: 2026
 Publication: https://doi.org/10.1038/s42256-026-01229-5
 Source Code: https://doi.org/10.5281/zenodo.18940151
