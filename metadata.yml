@@ -3,11 +3,11 @@ Slug: cocograph-small
 Status: In progress
 Title: CoCoGraph Small-Fragment Inpainting
 Description: Attaches a randomly selected small fragment (2–5 heavy atoms, drawn
-  from a library of frequent substructures) to an input molecule and refines it
-  with CoCoGraph's constrained graph diffusion, which swaps bond pairs so every
-  intermediate stays valence-valid, guaranteeing 100% chemical validity. The
-  diffusion and time models were trained on 2.25 million PubChem, ChEMBL, ZINC
-  and NIST molecules; in a Turing-like test, 121 organic chemists distinguished
+  from a library of frequent substructures) to an input molecule and refines it 
+  with CoCoGraphs constrained graph diffusion, which swaps bond pairs so every 
+  intermediate stays valence-valid, guaranteeing 100% chemical validity. The 
+  diffusion and time models were trained on 2.25 million PubChem, ChEMBL, ZINC 
+  and NIST molecules; in a Turing-like test, 121 organic chemists distinguished 
   its outputs from real molecules with only 62% accuracy.
 Deployment:
   - Local
@@ -22,8 +22,8 @@ Output:
   - Compound
 Output Dimension: 100
 Output Consistency: Variable
-Interpretation: 100 generated molecules produced by attaching a new small fragment
-  to the input scaffold.
+Interpretation: 100 generated molecules produced by attaching a new small 
+  fragment to the input scaffold.
 Tag:
   - Compound generation
   - Chemical graph model
@@ -37,3 +37,4 @@ Publication: https://doi.org/10.1038/s42256-026-01229-5
 Source Code: https://doi.org/10.5281/zenodo.18940151
 License: MIT
 Contributor: arnaucoma24
+Incorporation Date: '2026-08-28'
