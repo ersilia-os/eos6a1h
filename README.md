@@ -2,8 +2,7 @@
 
 Attaches a randomly selected small fragment (2–5 heavy atoms, drawn from a library of frequent substructures) to an input molecule and refines it with CoCoGraphs constrained graph diffusion, which swaps bond pairs so every intermediate stays valence-valid, guaranteeing 100% chemical validity. The diffusion and time models were trained on 2.25 million PubChem, ChEMBL, ZINC and NIST molecules; in a Turing-like test, 121 organic chemists distinguished its outputs from real molecules with only 62% accuracy.
 
-This model was incorporated on 2026-08-28.
-
+This model was incorporated on 2026-08-28.Last packaged on 2026-08-30.
 
 ## Information
 ### Identifiers
@@ -44,12 +43,19 @@ _10 of 100 columns are shown_
 ### Source and Deployment
 - **Source:** `Local`
 - **Source Type:** `External`
+- **DockerHub**: [https://hub.docker.com/r/ersiliaos/eos6a1h](https://hub.docker.com/r/ersiliaos/eos6a1h)
+- **Docker Architecture:** `AMD64`
 - **S3 Storage**: [https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos6a1h.zip](https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos6a1h.zip)
 
 ### Resource Consumption
 - **Model Size (Mb):** `52`
 - **Environment Size (Mb):** `1510`
+- **Image Size (Mb):** `1602.32`
 
+**Computational Performance (seconds):**
+- 10 inputs: `232.24`
+- 100 inputs: `-1`
+- 10000 inputs: `-1`
 
 ### References
 - **Source Code**: [https://doi.org/10.5281/zenodo.18940151](https://doi.org/10.5281/zenodo.18940151)
