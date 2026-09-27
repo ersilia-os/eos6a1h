@@ -1,6 +1,6 @@
 # CoCoGraph Small-Fragment Inpainting
 
-Attaches a randomly selected small fragment (2–5 heavy atoms, drawn from a library of frequent substructures) to an input molecule and refines it with CoCoGraphs constrained graph diffusion, which swaps bond pairs so every intermediate stays valence-valid, guaranteeing 100% chemical validity. The diffusion and time models were trained on 2.25 million PubChem, ChEMBL, ZINC and NIST molecules; in a Turing-like test, 121 organic chemists distinguished its outputs from real molecules with only 62% accuracy.
+Attaches a randomly selected small fragment (2–6 heavy atoms, drawn from a library of frequent substructures) to an input molecule and refines it with CoCoGraphs constrained graph diffusion, which swaps bond pairs so every intermediate stays valence-valid, guaranteeing 100% chemical validity. The diffusion and time models were trained on 2.25 million PubChem, ChEMBL, ZINC and NIST molecules; in a Turing-like test, 121 organic chemists distinguished its outputs from real molecules with only 62% accuracy.
 
 This model was incorporated on 2026-08-28.Last packaged on 2026-08-30.
 
