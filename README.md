@@ -49,7 +49,7 @@ _10 of 100 columns are shown_
 
 ### Resource Consumption
 - **Model Size (Mb):** `52`
-- **Environment Size (Mb):** `1510`
+- **Environment Size (Mb):** `1511`
 - **Image Size (Mb):** `1602.32`
 
 **Computational Performance (seconds):**
