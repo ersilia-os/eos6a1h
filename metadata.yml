@@ -2,7 +2,7 @@ Identifier: eos6a1h
 Slug: cocograph-small
 Status: Ready
 Title: CoCoGraph Small-Fragment Inpainting
-Description: Attaches a randomly selected small fragment (2–5 heavy atoms, drawn
+Description: Attaches a randomly selected small fragment (2–6 heavy atoms, drawn
   from a library of frequent substructures) to an input molecule and refines it 
   with CoCoGraphs constrained graph diffusion, which swaps bond pairs so every 
   intermediate stays valence-valid, guaranteeing 100% chemical validity. The 
