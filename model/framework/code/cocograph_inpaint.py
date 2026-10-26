@@ -11,6 +11,7 @@ per-request inference.
 import json
 import math
 import os
+import sys
 
 import networkx as nx
 import numpy as np
@@ -342,29 +343,63 @@ def _generate_one_candidate(model, time_model, original_graph, rng):
 
     g_final = components_to_graph(composite_graph.nodes(data=True), best_tensor)
     mol_final = nx_to_rdkit(g_final, False)
-    return Chem.MolToSmiles(mol_final)
+    smiles_final = Chem.MolToSmiles(mol_final)
+    # nx_to_rdkit hands back the unsanitised molecule when RDKit rejects it. Only a SMILES
+    # that RDKit parses back is returned; otherwise the caller retries with a new fragment.
+    if Chem.MolFromSmiles(smiles_final) is None:
+        raise ValueError("final molecule does not pass RDKit sanitisation")
+    return smiles_final
 
 
 def generate_candidates(model, time_model, smiles, n_candidates=N_CANDIDATES):
     """Generates `n_candidates` small-fragment-inpainted analogues of `smiles`.
 
-    Returns a list of `n_candidates` SMILES strings, using empty strings for
-    candidates that could not be generated (invalid input molecule, or a
-    fragment/attachment attempt that repeatedly failed).
+    Returns a list of `n_candidates` SMILES strings, all different from each other,
+    using empty strings for candidates that could not be generated (invalid input
+    molecule, or a fragment/attachment attempt that repeatedly failed).
     """
-    original_graph = smiles_to_graph(smiles)
-    if original_graph is None or original_graph.number_of_nodes() > MAX_ATOM:
+    if Chem.MolFromSmiles(smiles) is None:
+        print(f"Cannot parse input SMILES {smiles!r}: empty row", file=sys.stderr)
+        return [""] * n_candidates
+    try:
+        original_graph = smiles_to_graph(smiles)
+    except Exception as exc:
+        # A bond type the graph cannot hold (anything but single, double, triple)
+        print(f"Cannot process input SMILES {smiles!r}: {type(exc).__name__}: {str(exc)[:200]}", file=sys.stderr)
+        return [""] * n_candidates
+    if original_graph is None:
+        print(f"Input SMILES {smiles!r} has a dummy atom: empty row", file=sys.stderr)
+        return [""] * n_candidates
+    if original_graph.number_of_nodes() > MAX_ATOM:
+        print(f"Input SMILES {smiles!r} has more than {MAX_ATOM} atoms with hydrogens: empty row", file=sys.stderr)
         return [""] * n_candidates
 
     results = []
+    seen = set()
+    failed = 0
+    last_error = None
     for _ in range(n_candidates):
         smiles_out = ""
         for _attempt in range(MAX_CANDIDATE_RETRIES):
             try:
                 rng = np.random.default_rng()
-                smiles_out = _generate_one_candidate(model, time_model, original_graph, rng)
+                candidate = _generate_one_candidate(model, time_model, original_graph, rng)
+                # The 100 draws are independent, so the same molecule can come twice
+                key = Chem.MolToSmiles(Chem.MolFromSmiles(candidate))
+                if key in seen:
+                    raise ValueError("same molecule as an earlier candidate")
+                seen.add(key)
+                smiles_out = candidate
                 break
-            except Exception:
-                continue
+            except Exception as exc:
+                last_error = exc
+        else:
+            failed += 1
         results.append(smiles_out)
+    if failed:
+        print(
+            f"{failed} of {n_candidates} candidates failed {MAX_CANDIDATE_RETRIES} times for {smiles!r}; "
+            f"last error: {type(last_error).__name__}: {str(last_error)[:200]}",
+            file=sys.stderr,
+        )
     return results
