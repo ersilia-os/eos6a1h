@@ -2,7 +2,7 @@
 
 Attaches a randomly selected small fragment (2–6 heavy atoms, one of 500 molecular formulas) to a random hydrogen-bearing atom of the input and refines it with CoCoGraphs constrained graph diffusion, which swaps bond pairs so every intermediate stays valence-valid. Each output is re-parsed with RDKit and redrawn if invalid or already drawn; after 30 failed tries its cell stays empty. The models were trained on 2.25 million PubChem, ChEMBL, ZINC and NIST molecules; in a Turing-like test, 121 organic chemists distinguished its outputs from real molecules with only 62% accuracy.
 
-This model was incorporated on 2026-08-28.Last packaged on 2026-09-27.
+This model was incorporated on 2026-08-28.Last packaged on 2026-10-26.
 
 ## Information
 ### Identifiers
@@ -50,10 +50,10 @@ _10 of 100 columns are shown_
 ### Resource Consumption
 - **Model Size (Mb):** `52`
 - **Environment Size (Mb):** `1511`
-- **Image Size (Mb):** `1587.28`
+- **Image Size (Mb):** `1594.3`
 
 **Computational Performance (seconds):**
-- 10 inputs: `290.83`
+- 10 inputs: `232.66`
 - 100 inputs: `-1`
 - 10000 inputs: `-1`
 
